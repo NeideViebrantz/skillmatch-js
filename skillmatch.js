@@ -1,35 +1,4 @@
-const vagas = [
-    {
-        id: 1,
-        empresa: "LetSystens",
-        cargo: "Desenvolvedor Front-End Júnior",
-        requisitos: ["JavaScript", "GitHub", "Lógica de Programação"],
-        salario: 3200,
-        modalidade: "Remoto"
-    },
-    { id: 2,
-        empresa: "GreSystens",
-        cargo: "Programador JavaScript Júnior",
-        requisitos: ["JavaScript", "Arrays", "Objetos"],
-        salario: 3500,
-        modalidade: "Híbrido"
-
-    },
-    { id: 3,
-        empresa: "NjvSistemas",
-        cargo: "Estágio Front-End React",
-        requisitos: ["JavaScript", "Arrays", "React"],
-        salario: 1900,
-        modalidade: "Presencial"
-    },
-    { id: 4,
-        empresa: "CodeSystems",
-        cargo: "Desenvolvedor web",
-        requisitos: ["Html", "CSS", "JavaScript"],
-        salario: 2700,
-        modalidade: "Híbrido"
-    }
-];
+// Classe Candidato ---------------------------------------------
 
 class Candidato {
     constructor(nome, area, habilidades, experienciaMeses){
@@ -50,5 +19,68 @@ function cadastrarCandidato(){
 }
 
 const candidato = cadastrarCandidato();
-
 console.log("Candidato cadastrado:", candidato);
+
+
+// Classe Vaga ---------------------------------------------
+
+class Vaga {
+  constructor(empresa, cargo, requisitos, salario, modalidade) {
+    this.empresa = empresa;
+    this.cargo = cargo;
+    this.requisitos = requisitos;
+    this.salario = salario;
+    this.modalidade = modalidade;
+  }
+
+  exibirResumo() {
+    return `${this.cargo} na empresa ${this.empresa}`;
+  }
+}
+
+// herança
+class VagaFrontEnd extends Vaga {
+  constructor(empresa, cargo, requisitos, salario, modalidade, nivel) {
+    super(empresa, cargo, requisitos, salario, modalidade);
+    this.nivel = nivel;
+  }
+
+  exibirNivel() {
+    return `Nível da vaga: ${this.nivel}`;
+  }
+}
+
+const vagas = [
+    new VagaFrontEnd(
+        "LetSystens", 
+        "Desenvolvedor Front-End", 
+        ["JavaScript", "GitHub", "Lógica de Programação"], 
+        3200, 
+        "Remoto", 
+        "Júnior"
+    ),
+    new VagaFrontEnd(
+        "GreSystens", 
+        "Programador JavaScript Júnior", 
+        ["JavaScript", "Arrays", "Objetos"], 
+        3500, 
+        "Híbrido", 
+        "Júnior"
+    ),
+    new VagaFrontEnd(
+        "NjvSistemas", 
+        "Estágio Front-End React", 
+        ["JavaScript", "Arrays", "React"], 
+        1900, 
+        "Presencial", 
+        "Estágio"
+    ),
+    new VagaFrontEnd(
+        "CodeSystems", 
+        "Desenvolvedor web", 
+        ["Html", "CSS", "JavaScript"], 
+        2700, 
+        "Híbrido", 
+        "Pleno"
+    )
+];

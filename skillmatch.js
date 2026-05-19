@@ -84,3 +84,27 @@ const vagas = [
         "Pleno"
     )
 ];
+
+// Compatibilidade das vagas ---------------------------------------------
+
+// exemplo: compatibilidade = quantidade de requisitos atendidos / total de requisitos da vaga * 100
+// 1 - comparar os requisitos da vaga com as habilidades do candidato
+// 2 - tendo o total de requisitos atendidos, calcular a porcentagem de compatibilidade
+function calcularCompatibilidade(candidato, vaga) {
+  const totalRequisitosVaga = vaga.requisitos.length;
+  const requisitosAtendidos = vaga.requisitos.filter(requisito => candidato.habilidades.includes(requisito));
+  console.log('Requisitos atendidos:', requisitosAtendidos);
+    
+  const totalRequisitosCandidato = requisitosAtendidos.length;
+  console.log('Total:', totalRequisitosCandidato);
+
+  const compatibilidade = (totalRequisitosCandidato / totalRequisitosVaga) * 100;
+
+  return compatibilidade.toFixed(2);
+}
+
+// teste
+console.log("Calculando compatibilidade do candidato com a primeira vaga...");
+console.log("Vaga:", vagas[0].exibirResumo());
+const compatibilidade = calcularCompatibilidade(candidato, vagas[0]);
+console.log("Compatibilidade:", compatibilidade);

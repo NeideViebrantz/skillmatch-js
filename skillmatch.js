@@ -2,7 +2,7 @@ const candidato = {
     nome: "Paula",
     area:"Front-End",
     habilidades: ["JavaScript", "GitHub", "Lógica de Programação", "Kanban"],
-experienciaMeses: 5 
+    experienciaMeses: 5 
 };
 
 const vagas = [
@@ -14,7 +14,6 @@ const vagas = [
         salario: 3200,
         modalidade: "Remoto"
     },
-
     { id: 2,
         empresa: "GreSystens",
         cargo: "Programador JavaScript Júnior",
@@ -22,15 +21,14 @@ const vagas = [
         salario: 3500,
         modalidade: "Híbrido"
 
-    }
+    },
     { id: 3,
         empresa: "NjvSistemas",
         cargo: "Estágio Front-End React",
         requisitos: ["JavaScript", "Arrays", "React"],
         salario: 1900,
         modalidade: "Presencial"
-    }
-
+    },
     { id: 4,
         empresa: "CodeSystems",
         cargo: "Desenvolvedor web",
@@ -38,9 +36,4 @@ const vagas = [
         salario: 2700,
         modalidade: "Híbrido"
     }
-
-    // teste
 ];
-
-
- 

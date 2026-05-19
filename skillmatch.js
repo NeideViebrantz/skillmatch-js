@@ -108,3 +108,24 @@ console.log("Calculando compatibilidade do candidato com a primeira vaga...");
 console.log("Vaga:", vagas[0].exibirResumo());
 const compatibilidade = calcularCompatibilidade(candidato, vagas[0]);
 console.log("Compatibilidade:", compatibilidade);
+
+// Classificar a compatibilidade ----------------------------------------------
+
+/**
+ * Essa função classifica a compatibilidade com base na porcentagem calculada:
+ * 80% a 100% = Alta compatibilidade
+ * 50% a 79% = Média compatibilidade
+ * 0% a 49% = Baixa compatibilidade
+ */
+function classificarCompatibilidade(porcentagem) {
+    if (porcentagem >= 80) {
+        return "Alta compatibilidade";
+    } else if (porcentagem >= 50) {
+        return "Média compatibilidade";
+    } else {
+        return "Baixa compatibilidade";
+    }
+}
+
+// teste
+console.log("A compatibilidade da vaga é:", classificarCompatibilidade(compatibilidade));

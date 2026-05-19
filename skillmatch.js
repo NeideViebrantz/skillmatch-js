@@ -62,7 +62,7 @@ const vagas = [
     new VagaFrontEnd(
         "GreSystens", 
         "Programador JavaScript Júnior", 
-        ["JavaScript", "Arrays", "Objetos"], 
+        ["JavaScript", "Arrays", "Objetos", "Herança"], 
         3500, 
         "Híbrido", 
         "Júnior"
@@ -78,7 +78,7 @@ const vagas = [
     new VagaFrontEnd(
         "CodeSystems", 
         "Desenvolvedor web", 
-        ["Html", "CSS", "JavaScript"], 
+        ["HTML", "CSS", "JavaScript", "GitHub", "Angular"], 
         2700, 
         "Híbrido", 
         "Pleno"
@@ -93,10 +93,8 @@ const vagas = [
 function calcularCompatibilidade(candidato, vaga) {
   const totalRequisitosVaga = vaga.requisitos.length;
   const requisitosAtendidos = vaga.requisitos.filter(requisito => candidato.habilidades.includes(requisito));
-  console.log('Requisitos atendidos:', requisitosAtendidos);
     
   const totalRequisitosCandidato = requisitosAtendidos.length;
-  console.log('Total:', totalRequisitosCandidato);
 
   const compatibilidade = (totalRequisitosCandidato / totalRequisitosVaga) * 100;
 
@@ -129,3 +127,27 @@ function classificarCompatibilidade(porcentagem) {
 
 // teste
 console.log("A compatibilidade da vaga é:", classificarCompatibilidade(compatibilidade));
+
+// Obter habilidades faltantes ----------------------------------------------
+function obterHabilidadesFaltantes(candidato, vaga) {
+    const habilidadesFaltantes = vaga.requisitos.filter(requisito => !candidato.habilidades.includes(requisito));
+    return habilidadesFaltantes;
+}
+
+// teste
+const habilidadesFaltantes = obterHabilidadesFaltantes(candidato, vagas[0]);
+console.log("Habilidades faltantes para a vaga:", habilidadesFaltantes);
+
+// Obter vagas mais compatíveis ----------------------------------------------
+function obterVagaMaisCompativel(candidato, vagas) {
+    return vagas.reduce((vagaMaisCompativel, vaga) => {
+        const compatibilidade = calcularCompatibilidade(candidato, vaga);
+        const compatibilidadeMaisAlta = calcularCompatibilidade(candidato, vagaMaisCompativel);
+        return compatibilidade > compatibilidadeMaisAlta ? vaga : vagaMaisCompativel;
+    });
+}
+
+// teste
+const vagaMaisCompativel = obterVagaMaisCompativel(candidato, vagas);
+console.log("Encontramos uma vaga mais compatível:", vagaMaisCompativel.exibirResumo());
+console.log("Classificação:", classificarCompatibilidade(calcularCompatibilidade(candidato, vagaMaisCompativel)));

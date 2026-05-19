@@ -38,6 +38,8 @@ const vagas = [
         salario: 2700,
         modalidade: "Híbrido"
     }
+
+    // teste
 ];
 
 

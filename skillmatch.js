@@ -1,10 +1,3 @@
-const candidato = { 
-    nome: "Paula",
-    area:"Front-End",
-    habilidades: ["JavaScript", "GitHub", "Lógica de Programação", "Kanban"],
-    experienciaMeses: 5 
-};
-
 const vagas = [
     {
         id: 1,
@@ -37,3 +30,25 @@ const vagas = [
         modalidade: "Híbrido"
     }
 ];
+
+class Candidato {
+    constructor(nome, area, habilidades, experienciaMeses){
+        this.nome = nome;
+        this.area = area;
+        this.habilidades = habilidades;
+        this.experienciaMeses = experienciaMeses;
+    }
+}
+
+function cadastrarCandidato(){
+    const nome = prompt("Qual é o seu nome?");
+    const area = prompt("Qual é a sua área de atuação?");
+    const habilidades = prompt("Quais são as suas habilidades? (separe por vírgula)").split(",").map(habilidade => habilidade.trim());
+    const experienciaMeses = parseInt(prompt("Quantos meses de experiência você tem?"));
+
+    return new Candidato(nome, area, habilidades, experienciaMeses);
+}
+
+const candidato = cadastrarCandidato();
+
+console.log("Candidato cadastrado:", candidato);

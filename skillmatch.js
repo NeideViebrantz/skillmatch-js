@@ -151,3 +151,12 @@ function obterVagaMaisCompativel(candidato, vagas) {
 const vagaMaisCompativel = obterVagaMaisCompativel(candidato, vagas);
 console.log("Encontramos uma vaga mais compatível:", vagaMaisCompativel.exibirResumo());
 console.log("Classificação:", classificarCompatibilidade(calcularCompatibilidade(candidato, vagaMaisCompativel)));
+
+//recomendacao de estudo
+function recomendarEstudo(candidato, vaga) {
+    const habilidadesFaltantes = obterHabilidadesFaltantes(candidato, vaga);    
+    if (habilidadesFaltantes.length > 0) {
+        console.log("Priorize estudar Arrays, Objetos e Funções, pois esses conteúdos aparecem nas vagas analisadas");
+        
+    }
+}

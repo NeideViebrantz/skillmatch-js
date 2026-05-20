@@ -160,3 +160,14 @@ function recomendarEstudo(candidato, vaga) {
         
     }
 }
+
+//usar callback  
+function finalizarAnalise(nomeCandidato, callback) {
+  console.log("Análise finalizada.");
+  callback(nomeCandidato);
+}
+
+function exibirMensagemFinal(nome) {
+  console.log(`${nome}, revise suas habilidades faltantes e atualize seu plano de estudos.`);
+}
+

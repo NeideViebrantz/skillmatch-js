@@ -190,5 +190,25 @@ console.log(contador()); // Saída: 1
 console.log(contador()); // Saída: 2
 console.log(contador()); // Saída: 3
 
+// usar promisse await
+// Função que simula a busca de vagas como se os dados viessem de um servidor ou banco de dados,
+// usando uma Promise para simular o atraso da resposta.
+
+function buscarVagasSimuladas() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(vagas);
+    }, 1000); // Simulando um atraso de 1 segundo
+  });
+}
+
+async function iniciarSistema() {
+  const vagasCarregadas = await buscarVagasSimuladas();
+    console.log("Vagas carregadas:", vagasCarregadas);
+    finalizarAnalise(candidato.nome, exibirMensagemFinal);
+}
+ 
+// Iniciar o sistema
+iniciarSistema();
 
           

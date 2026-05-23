@@ -171,3 +171,24 @@ function exibirMensagemFinal(nome) {
   console.log(`${nome}, revise suas habilidades faltantes e atualize seu plano de estudos.`);
 }
 
+//closure  
+
+function criarContadorDeAnalises() {
+  let total = 0;
+
+  return function () {
+    total++;
+    return total;
+  };
+}
+ 
+// Criar uma instância do contador
+const contador = criarContadorDeAnalises();
+ 
+// Exemplo de uso
+console.log(contador()); // Saída: 1
+console.log(contador()); // Saída: 2
+console.log(contador()); // Saída: 3
+
+
+          

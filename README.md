@@ -58,5 +58,4 @@ Este projeto é um simulador que ajuda candidatos a encontrar vagas de emprego n
 Se você tiver alguma dúvida ou precisar de ajuda, sinta-se à vontade para perguntar! 😊
 
 # Autoras
-Greici Brandt
-Neide Viebrantz
+Greici Brandt e Neide Viebrantz

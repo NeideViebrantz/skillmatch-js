@@ -18,10 +18,6 @@ function cadastrarCandidato(){
     return new Candidato(nome, area, habilidades, experienciaMeses);
 }
 
-const candidato = cadastrarCandidato();
-console.log("Candidato cadastrado:", candidato);
-
-
 // Classe Vaga ---------------------------------------------
 
 class Vaga {
@@ -34,7 +30,12 @@ class Vaga {
   }
 
   exibirResumo() {
-    return `${this.cargo} na empresa ${this.empresa}`;
+    return `
+      ${this.cargo} na empresa ${this.empresa}\n
+      Requisitos: ${this.requisitos.join(", ")}\n
+      Salário: R$${this.salario}\n
+      Modalidade: ${this.modalidade}
+    `;
   }
 }
 
@@ -101,12 +102,6 @@ function calcularCompatibilidade(candidato, vaga) {
   return compatibilidade.toFixed(2);
 }
 
-// teste
-console.log("Calculando compatibilidade do candidato com a primeira vaga...");
-console.log("Vaga:", vagas[0].exibirResumo());
-const compatibilidade = calcularCompatibilidade(candidato, vagas[0]);
-console.log("Compatibilidade:", compatibilidade);
-
 // Classificar a compatibilidade ----------------------------------------------
 
 /**
@@ -125,18 +120,11 @@ function classificarCompatibilidade(porcentagem) {
     }
 }
 
-// teste
-console.log("A compatibilidade da vaga é:", classificarCompatibilidade(compatibilidade));
-
 // Obter habilidades faltantes ----------------------------------------------
 function obterHabilidadesFaltantes(candidato, vaga) {
     const habilidadesFaltantes = vaga.requisitos.filter(requisito => !candidato.habilidades.includes(requisito));
     return habilidadesFaltantes;
 }
-
-// teste
-const habilidadesFaltantes = obterHabilidadesFaltantes(candidato, vagas[0]);
-console.log("Habilidades faltantes para a vaga:", habilidadesFaltantes);
 
 // Obter vagas mais compatíveis ----------------------------------------------
 function obterVagaMaisCompativel(candidato, vagas) {
@@ -147,17 +135,11 @@ function obterVagaMaisCompativel(candidato, vagas) {
     });
 }
 
-// teste
-const vagaMaisCompativel = obterVagaMaisCompativel(candidato, vagas);
-console.log("Encontramos uma vaga mais compatível:", vagaMaisCompativel.exibirResumo());
-console.log("Classificação:", classificarCompatibilidade(calcularCompatibilidade(candidato, vagaMaisCompativel)));
-
 //recomendacao de estudo
 function recomendarEstudo(candidato, vaga) {
     const habilidadesFaltantes = obterHabilidadesFaltantes(candidato, vaga);    
     if (habilidadesFaltantes.length > 0) {
-        console.log("Priorize estudar Arrays, Objetos e Funções, pois esses conteúdos aparecem nas vagas analisadas");
-        
+        console.log("Priorize estudar " + habilidadesFaltantes.join(", ") + ", pois esses conteúdos aparecem na vaga analisada.");
     }
 }
 
@@ -168,7 +150,7 @@ function finalizarAnalise(nomeCandidato, callback) {
 }
 
 function exibirMensagemFinal(nome) {
-  console.log(`${nome}, revise suas habilidades faltantes e atualize seu plano de estudos.`);
+  console.log(`${nome}, revise suas habilidades faltantes e atualize seu perfil para encontrar mais vagas.`);
 }
 
 //closure  
@@ -204,11 +186,30 @@ function buscarVagasSimuladas() {
 
 async function iniciarSistema() {
   const vagasCarregadas = await buscarVagasSimuladas();
-    console.log("Vagas carregadas:", vagasCarregadas);
-    finalizarAnalise(candidato.nome, exibirMensagemFinal);
-}
- 
-// Iniciar o sistema
-iniciarSistema();
+  console.log("Vagas disponíveis:", vagasCarregadas);
 
-          
+  alert("Bem-vindo ao SkillMatch! Vamos começar cadastrando seu perfil para as vagas disponíveis.");
+  const candidato = cadastrarCandidato();
+  console.log("Candidato cadastrado:", candidato);
+
+  console.log("Calculando compatibilidade do candidato com a primeira vaga...");
+  console.log("Vaga:", vagas[0].exibirResumo());
+
+  const compatibilidade = calcularCompatibilidade(candidato, vagas[0]);
+  console.log("Compatibilidade em %:", compatibilidade);
+  console.log("A compatibilidade da vaga é:", classificarCompatibilidade(compatibilidade));
+
+  const habilidadesFaltantes = obterHabilidadesFaltantes(candidato, vagas[0]);
+  console.log("Habilidades faltantes para a vaga:", habilidadesFaltantes);
+  console.log("Recomendação de estudo:");
+  recomendarEstudo(candidato, vagas[0]);
+
+  const vagaMaisCompativel = obterVagaMaisCompativel(candidato, vagas);
+  console.log("Encontramos uma vaga mais compatível:", vagaMaisCompativel.exibirResumo());
+  console.log("Classificação:", classificarCompatibilidade(calcularCompatibilidade(candidato, vagaMaisCompativel)));
+  
+  finalizarAnalise(candidato.nome, exibirMensagemFinal);
+}
+
+// Execução do sistema
+iniciarSistema();
